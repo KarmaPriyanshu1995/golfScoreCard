@@ -1,28 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AddScore from './src/components/AddScore';
+import Scorecard from './src/components/Scorecard';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const Stack = createNativeStackNavigator();
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="AddScore"
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="AddScore" component={AddScore} />
+          <Stack.Screen
+            name="Scorecard"
+            component={Scorecard}
+            options={{ title: 'Scorecard' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
 
 export default App;
