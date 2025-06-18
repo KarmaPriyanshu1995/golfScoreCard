@@ -8,4 +8,5 @@ export const Colors = {
   ACTIVE_COLOR: 'rgba(205, 233, 132, 1)',
   FADE_WHITE: 'rgba(241, 241, 241, 1)',
   FADE_GREY: 'rgba(81, 99, 116, 1)',
+  HARD_APP_COLOR:'#253C51'
 };
